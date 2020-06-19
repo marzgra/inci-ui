@@ -4,6 +4,18 @@ import {handleResponse} from '../../helpers.js';
 import Loading from '../common/loading/Loading';
 import './Detail.css';
 import MyListGroup from "../common/list/MyListGroup";
+import {Link} from "react-router-dom";
+
+function Button (props) {
+    // const {inci} = props.inci;
+    return <Link className='btn-link' to={{
+        pathname: `/ingredients/edit`,
+        state: {
+            inci: props.inci,
+            isEditMode: true
+        }
+    }}>Edytuj</Link>
+}
 
 export default class Detail extends React.Component {
     constructor(props) {
@@ -89,7 +101,9 @@ export default class Detail extends React.Component {
                         <span className="Detail-title">Inne nazwy</span>
                         <MyListGroup functions={ingredient.alternativeNames}/>
                     </div>
+                    <Button inci={ingredient}/>
                 </div>
+
             </div>
         );
     }

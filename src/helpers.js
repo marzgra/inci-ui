@@ -1,9 +1,7 @@
 import React from 'react';
 
 export const handleResponse = (response) => {
-    console.log(response);
     return response.json().then(json => {
-        console.log("json: " + json);
         return json;
     });
 };

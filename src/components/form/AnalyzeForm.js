@@ -9,7 +9,6 @@ import InciCard from "../inciCard/InciCard";
 export default class AnalyzeForm extends React.Component {
     constructor(props) {
         super(props);
-        // const {history} = props;
         this.state = {
             ingredients: [],
             result: [],
@@ -47,22 +46,9 @@ export default class AnalyzeForm extends React.Component {
         })
             .then(handleResponse)
             .then((data) => {
-                // let tmpArray = [];
-                // for (let i = 0; i < data.results.length; i++) {
-                //     tmpArray.push(data.results[i])
-                // }
-                console.log("data: " + data);
                 this.setState({
-                    // result: tmpArray,
                     result: data,
                     loaded: true
-                });
-                console.log("in handlesubmit: " + this.state.result)
-            })
-            .catch((error) => {
-                // Show error message, if request fails and set loading to false
-                this.setState({
-                    error: error.message,
                 });
             });
     };
@@ -88,18 +74,9 @@ export default class AnalyzeForm extends React.Component {
                 </div>
 
                 {
-                loaded && result.map(inci =>
-
-                        <tr
-                            key={inci.inciName}
-                            // onClick={() => history.push(`/ingredients/id/${inci.inciId}`)}
-                        >
-                            <td>
-                                <InciCard functions={inci}/>
-                            </td>
-
-                        </tr>)}
-
+                    loaded && result.map(inci =>
+                        <InciCard inci={inci}/>
+                    )}
 
             </div>
         );
